@@ -3,11 +3,60 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>CRUD Project</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Hello, world!</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div class="bg-dark py-3">
+      <h3 class="text-white text-center">Simple CRUD Project</h3>
+    </div>
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+          <div class="card borde-0 shadow-lg my-4">
+            <div class="card-header bg-dark">
+              <h3 class="text-white">Create Project</h3>
+            </div>
+            <form action="{{route('products.store')}}" method="POST">
+              @csrf
+              <div class="card-body">
+                <div class="mb-3">
+                  <label for="" class="form-label h3">Name</label>
+                  <input type="text" class="@error('name') is-invalid @enderror form-control form-control-lg" value="{{old('name')}}" placeholder="Name" name="name">
+                  @error('name')
+                    <p class="invalid-feedback"> {{$message}}</p>
+                  @enderror
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label h3">Sku</label>
+                  <input type="text" class=" @error('sku') is-invalid @enderror form-control form-control-lg" value="{{old('sku')}}" placeholder="Sku" name="sku">
+                  @error('sku')
+                  <p class="invalid-feedback"> {{$message}}</p>
+                @enderror
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label h3">Price</label>
+                  <input type="text" class="@error('price') is-invalid @enderror form-control-lg form-control" value="{{old('price')}}" placeholder="Price" name="price">
+                  @error('price')
+                  <p class="invalid-feedback"> {{$message}}</p>
+                @enderror
+                </div> 
+                <div class="mb-3">
+                  <label for="" class="form-label h3">Description</label>
+                  <textarea class="form-control" cols="30" rows="5" placeholder="Description" name="description" value="{{old('description')}}"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="" class="form-label h3">Image</label>
+                  <input type="file" class="form-control form-control-lg"  name="image">
+                </div>
+                <div class="d-grid">
+                  <button class="btn btn-lg btn-primary text-white">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
